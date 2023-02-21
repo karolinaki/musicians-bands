@@ -1,5 +1,5 @@
-const {sequelize} = require('./db');
-const {Band, Musician} = require('./index')
+const { sequelize } = require('./db');
+const { Band, Musician, Song, } = require('./index')
 
 describe('Band and Musician Models', () => {
     /**
@@ -12,13 +12,34 @@ describe('Band and Musician Models', () => {
         await sequelize.sync({ force: true });
     })
 
+    
+
     test('can create a Band', async () => {
-        // TODO - test creating a band
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const testUser1 = await Band.create({ name: 'Oasis', genre: 'Rock and Pop' });
+        expect(testUser1.name).toBe('Oasis');
+    })
+    
+    test('can create a Band', async () => {
+        const testUser3 = await Band.create({ name: 'Blur', genre: 'BritPop' });
+        expect(testUser3.genre).toBe('BritPop');
+    })
+
+
+        
+    test('can create a Musician', async () => {
+        const testUser2 = await Musician.create({ name: 'Noel', instrument: 'Guitar' });
+        expect(testUser2.name).toBe('Noel');
     })
 
     test('can create a Musician', async () => {
-        // TODO - test creating a musician
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const testUser4 = await Musician.create({ name: 'Damian', instrument: 'Singer' });
+        expect(testUser4.instrument).toBe('Singer');
     })
+
+    test('can create a Song', async () => {
+        const song1 = await Song.create({ title: 'Wonderwall' });
+        expect(song1.title).toBe('Wonderwall');
+    })
+
+
 })
